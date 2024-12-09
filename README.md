@@ -2,6 +2,8 @@
 
 MCP Server is a versatile tool designed for interactive data exploration.
 
+Your personal Data Scientist assistant, turning complex datasets into clear, actionable insights.
+
 ## 🚀 Try it Out
 
 1. **Download Claude Desktop**
@@ -27,21 +29,27 @@ MCP Server is a versatile tool designed for interactive data exploration.
 These are examples of how you can use MCP Server to explore data without any human intervention.
 
 ### Case 1: California Real Estate Listing Prices
-- Dataset: [USA Real Estate Dataset](https://www.kaggle.com/datasets/ahmedshahriarsakib/usa-real-estate-dataset)
+- Kaggle Dataset: [USA Real Estate Dataset](https://www.kaggle.com/datasets/ahmedshahriarsakib/usa-real-estate-dataset)
 - Size: 2,226,382 entries (178.9 MB)
 - Topic: Housing price trends in California
-- Screen Recording: [View]()
+
+[![Watch the video](https://img.youtube.com/vi/RQZbeuaH9Ys/hqdefault.jpg)](https://www.youtube.com/watch?v=RQZbeuaH9Ys)
+- [Data Exploration Summary](https://claude.site/artifacts/058a1593-7a14-40df-bf09-28b8c4531137)
 
 ### Case 2: Weather in London
-- Dataset: [2M+ Daily Weather History UK](https://www.kaggle.com/datasets/jakewright/2m-daily-weather-history-uk/data)
+- Kaggle Dataset: [2M+ Daily Weather History UK](https://www.kaggle.com/datasets/jakewright/2m-daily-weather-history-uk/data)
 - Size: 2,836,186 entries (169.3 MB)
 - Topic: Weather in London
-- Screen Recording: [View](#)
 - Report: [View Report](https://claude.site/artifacts/601ea9c1-a00e-472e-9271-3efafb8edede)
 - Graphs:
-  - [Graph 1](https://claude.site/artifacts/9a25bc1e-d0cf-498a-833c-5179547ee268)
-  - [Graph 2](https://claude.site/artifacts/242acd00-21bd-471e-bd64-e41476c8676a)
-  - [Graph 3](https://claude.site/artifacts/32a3371c-698d-48e3-b94e-f7e88ce8093d)
+  - [London Temperature Trends](https://claude.site/artifacts/9a25bc1e-d0cf-498a-833c-5179547ee268)
+<img width="1622" alt="Screenshot 2024-12-09 at 12 48 56 AM" src="https://github.com/user-attachments/assets/9e70fe97-8af7-4221-b1e7-00197c88bb47">
+
+  - [Temperature-Humidity Relationship by Season](https://claude.site/artifacts/32a3371c-698d-48e3-b94e-f7e88ce8093d)
+<img width="1623" alt="Screenshot 2024-12-09 at 12 47 54 AM" src="https://github.com/user-attachments/assets/f4ac60a8-30e3-4b10-b296-ba412c2922fa">
+
+  - [Wind Direction Pattern by Season](https://claude.site/artifacts/32a3371c-698d-48e3-b94e-f7e88ce8093d)
+<img width="1622" alt="Screenshot 2024-12-09 at 12 47 00 AM" src="https://github.com/user-attachments/assets/2db01054-f948-4d2e-ba39-8de8fa59f83d">
 
 ## 📦 Components
 
