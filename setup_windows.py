@@ -55,14 +55,58 @@ def sync_dependencies():
     run_command("uv sync")
     print("Dependencies synced successfully")
 
+def find_claude_path():
+    """Find Claude desktop app installation path."""
+    possible_paths = [
+        os.path.expandvars("%LOCALAPPDATA%\\Programs\\Claude\\Claude.exe"),
+        os.path.expandvars("%PROGRAMFILES%\\Claude\\Claude.exe"),
+        os.path.expandvars("%PROGRAMFILES(X86)%\\Claude\\Claude.exe"),
+        os.path.expandvars("%APPDATA%\\Claude\\Claude.exe"),
+    ]
+    
+    # Check if Claude is in PATH
+    claude_in_path = run_command("where Claude.exe 2>nul", check=False)
+    if claude_in_path:
+        possible_paths.insert(0, claude_in_path.strip())
+    
+    # Try each path
+    for path in possible_paths:
+        if Path(path).exists():
+            print(f"Found Claude at: {path}")
+            return path
+    
+    # If not found, ask for manual path
+    print("Claude desktop app not found in common locations.")
+    print("Please download and install from: https://claude.ai/download")
+    
+    if ask_permission("Would you like to specify the Claude.exe path manually?"):
+        while True:
+            manual_path = input("Enter the full path to Claude.exe: ").strip()
+            if not manual_path:
+                continue
+                
+            # Remove quotes if user added them
+            manual_path = manual_path.strip('"\'')
+                
+            if Path(manual_path).exists():
+                print(f"Found Claude at: {manual_path}")
+                return manual_path
+            else:
+                print(f"File not found: {manual_path}")
+                if not ask_permission("Try again?"):
+                    break
+    
+    if not ask_permission("Continue without Claude verification?"):
+        sys.exit("Claude desktop app is required to continue")
+    
+    # If we get here, use a default path and hope for the best
+    return possible_paths[0]
+
 def check_claude_desktop():
     """Check if Claude desktop app is installed."""
-    app_path = os.path.expandvars("%LOCALAPPDATA%\\Programs\\Claude\\Claude.exe")
-    if not Path(app_path).exists():
-        print("Claude desktop app not found.")
-        print("Please download and install from: https://claude.ai/download")
-        if not ask_permission("Continue after installing Claude?"):
-            sys.exit("Claude desktop app is required to continue")
+    global CLAUDE_PATH
+    CLAUDE_PATH = find_claude_path()
+    return CLAUDE_PATH
 
 def setup_claude_config():
     """Setup Claude desktop config file."""
@@ -129,16 +173,24 @@ def restart_claude():
     """Restart Claude desktop app if running."""
     # Check if Claude is running using Windows command
     claude_running = run_command("tasklist /FI \"IMAGENAME eq Claude.exe\"", check=False)
+    claude_path = CLAUDE_PATH if hasattr(sys.modules[__name__], 'CLAUDE_PATH') else ""
+    
     if "Claude.exe" in claude_running:
         if ask_permission("Claude is running. Restart it?"):
             print("Restarting Claude...")
             run_command("taskkill /IM Claude.exe /F")
             time.sleep(2)
-            run_command("start \"\" \"%LOCALAPPDATA%\\Programs\\Claude\\Claude.exe\"")
-            print("Claude restarted successfully")
+            if claude_path and Path(claude_path).exists():
+                run_command(f"start \"\" \"{claude_path}\"")
+            else:
+                print("Unable to restart Claude automatically. Please start it manually.")
+            print("Claude restart initiated")
     else:
         print("Starting Claude...")
-        run_command("start \"\" \"%LOCALAPPDATA%\\Programs\\Claude\\Claude.exe\"")
+        if claude_path and Path(claude_path).exists():
+            run_command(f"start \"\" \"{claude_path}\"")
+        else:
+            print("Unable to start Claude automatically. Please start it manually.")
 
 def main():
     """Main setup function."""
@@ -152,6 +204,10 @@ def main():
     update_config(config_path, config, wheel_path)
     restart_claude()
     print("Setup completed successfully!")
+    print("\nTo use the MCP server:")
+    print("1. Open Claude Desktop")
+    print("2. Select the 'explore-data' prompt template from MCP")
+    print("3. Begin your data exploration")
 
 if __name__ == "__main__":
     main()
