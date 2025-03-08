@@ -97,14 +97,21 @@ def build_package():
     if process.returncode != 0:
         sys.exit(f"Build failed with error code {process.returncode}")
 
-    # Extract wheel file path from the combined output
-    match = re.findall(r'dist/[^\\s]+\\.whl', output.strip())
-    whl_file = match[-1] if match else None
-    if not whl_file:
-        sys.exit("Failed to find wheel file in build output")
+    # Look for the wheel file directly in the dist directory
+    dist_dir = Path("dist")
+    if not dist_dir.exists():
+        sys.exit("dist directory not found after build")
+    
+    wheel_files = list(dist_dir.glob("*.whl"))
+    if not wheel_files:
+        sys.exit("No wheel files found in dist directory")
+    
+    # Take the first wheel file
+    wheel_path = wheel_files[0]
+    print(f"Found wheel file: {wheel_path}")
     
     # Convert to absolute path
-    path = Path(whl_file).absolute()
+    path = wheel_path.absolute()
     return str(path)
 
 def update_config(config_path, config, wheel_path):
