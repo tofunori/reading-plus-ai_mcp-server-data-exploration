@@ -14,6 +14,11 @@ Your personal Data Scientist assistant, turning complex datasets into clear, act
    ```bash
    python setup.py
    ```
+   
+   - On Windows, run the following command in Command Prompt or PowerShell:
+   ```bash
+   python setup_windows.py
+   ```
 
 3. **Load Templates and Tools**
    - Once the server is running, wait for the prompt template and tools to load in Claude Desktop.
@@ -43,13 +48,13 @@ These are examples of how you can use MCP Server to explore data without any hum
 - Report: [View Report](https://claude.site/artifacts/601ea9c1-a00e-472e-9271-3efafb8edede)
 - Graphs:
   - [London Temperature Trends](https://claude.site/artifacts/9a25bc1e-d0cf-498a-833c-5179547ee268)
-<img width="1622" alt="Screenshot 2024-12-09 at 12 48 56 AM" src="https://github.com/user-attachments/assets/9e70fe97-8af7-4221-b1e7-00197c88bb47">
+<img width="1622" alt="Screenshot 2024-12-09 at 12 48 56 AM" src="https://github.com/user-attachments/assets/9e70fe97-8af7-4221-b1e7-00197c88bb47">
 
   - [Temperature-Humidity Relationship by Season](https://claude.site/artifacts/32a3371c-698d-48e3-b94e-f7e88ce8093d)
-<img width="1623" alt="Screenshot 2024-12-09 at 12 47 54 AM" src="https://github.com/user-attachments/assets/f4ac60a8-30e3-4b10-b296-ba412c2922fa">
+<img width="1623" alt="Screenshot 2024-12-09 at 12 47 54 AM" src="https://github.com/user-attachments/assets/f4ac60a8-30e3-4b10-b296-ba412c2922fa">
 
   - [Wind Direction Pattern by Season](https://claude.site/artifacts/32a3371c-698d-48e3-b94e-f7e88ce8093d)
-<img width="1622" alt="Screenshot 2024-12-09 at 12 47 00 AM" src="https://github.com/user-attachments/assets/2db01054-f948-4d2e-ba39-8de8fa59f83d">
+<img width="1622" alt="Screenshot 2024-12-09 at 12 47 00 AM" src="https://github.com/user-attachments/assets/2db01054-f948-4d2e-ba39-8de8fa59f83d">
 
 ## 📦 Components
 
