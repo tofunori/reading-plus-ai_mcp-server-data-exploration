@@ -1,0 +1,3 @@
+@echo off
+echo Starting MCP Server...
+python -m mcp_server_ds
